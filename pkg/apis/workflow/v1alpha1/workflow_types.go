@@ -1854,8 +1854,17 @@ type GitArtifact struct {
 	// SSHPrivateKeySecret is the secret selector to the repository ssh private key
 	SSHPrivateKeySecret *apiv1.SecretKeySelector `json:"sshPrivateKeySecret,omitempty" protobuf:"bytes,7,opt,name=sshPrivateKeySecret"`
 
+	// ApplicationIdSecret is the secret selector to the Application ID key
+	ApplicationIdSecret *apiv1.SecretKeySelector `json:"applicationIdSecret,omitempty" protobuf:"varint,8,opt,name=applicationIdSecret"`
+
+	// ApplicationIdSecret is the secret selector to the Application ID key
+	InstallationIdSecret *apiv1.SecretKeySelector `json:"installationIDSecret,omitempty" protobuf:"varint,9,opt,name=installationIdSecret"`
+
+	// ApplicationIdSecret is the secret selector to the Application ID key
+	ApplicationKeySecret *apiv1.SecretKeySelector `json:"applicationKeySecret,omitempty" protobuf:"varint,10,opt,name=applicationKeySecret"`
+
 	// InsecureIgnoreHostKey disables SSH strict host key checking during git clone
-	InsecureIgnoreHostKey bool `json:"insecureIgnoreHostKey,omitempty" protobuf:"varint,8,opt,name=insecureIgnoreHostKey"`
+	InsecureIgnoreHostKey bool `json:"insecureIgnoreHostKey,omitempty" protobuf:"varint,11,opt,name=insecureIgnoreHostKey"`
 }
 
 func (g *GitArtifact) HasLocation() bool {

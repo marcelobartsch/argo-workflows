@@ -3371,6 +3371,18 @@
         "usernameSecret": {
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
           "description": "UsernameSecret is the secret selector to the repository username"
+        },
+        "applicationIdSecret": {
+          "description": "applicationID is the secret selector to the repository username",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector"
+        },
+        "installationIdSecret": {
+          "description": "instllationId is the secret selector to the repository username",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector"
+        },
+        "applicationKeySecret": {
+          "description": "secret key data is the secret selector to the repository username",
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector"
         }
       },
       "required": [

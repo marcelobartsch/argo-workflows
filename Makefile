@@ -206,8 +206,8 @@ dist/argocli.image: $(CLI_PKGS) go.sum argo-server.crt argo-server.key
 	touch dist/argocli.image
 
 .PHONY: clis
-clis: dist/argo-linux-amd64.gz dist/argo-linux-arm64.gz dist/argo-linux-ppc64le.gz dist/argo-linux-s390x.gz dist/argo-darwin-amd64.gz dist/argo-windows-amd64.gz
-
+#clis: dist/argo-linux-amd64.gz dist/argo-linux-arm64.gz dist/argo-linux-ppc64le.gz dist/argo-linux-s390x.gz dist/argo-darwin-amd64.gz dist/argo-windows-amd64.gz
+clis: dist/argo-linux-amd64.gz dist/argo-linux-arm64.gz
 # controller
 
 .PHONY: controller

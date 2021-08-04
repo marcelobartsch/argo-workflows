@@ -3,6 +3,7 @@ package executor
 import (
 	"context"
 	"fmt"
+	"strconv"
 
 	wfv1 "github.com/argoproj/argo-workflows/v3/pkg/apis/workflow/v1alpha1"
 	"github.com/argoproj/argo-workflows/v3/workflow/artifacts/artifactory"
@@ -88,6 +89,28 @@ func NewDriver(ctx context.Context, art *wfv1.Artifact, ri resource.Interface) (
 			gitDriver.SSHPrivateKey = sshPrivateKeyBytes
 		}
 
+		if art.Git.ApplicationIDSecret != nil {
+			ApplicationIdBytes, err := ri.GetSecret(ctx, art.Git.ApplicationIDSecret.Name, art.Git.ApplicationIDSecret.Key)
+			if err != nil {
+				return nil, err
+			}
+			gitDriver.ApplicationId, err = strconv.ParseInt(ApplicationIdBytes,10, 64)
+		}
+
+		if art.Git.InstallationIDSecret != nil {
+			InstallationIdBytes, err := ri.GetSecret(ctx, art.Git.InstallationIDSecret.Name, art.Git.InstallationIDSecret.Key)
+			if err != nil {
+				return nil, err
+			}
+			gitDriver.InstallationId, err = strconv.ParseInt(InstallationIdBytes,10, 64)
+		}
+		if art.Git.ApplicationKeySecret != nil {
+			ApplicationKeySecretBytes, err := ri.GetSecret(ctx, art.Git.ApplicationKeySecret.Name, art.Git.ApplicationKeySecret.Key)
+			if err != nil {
+				return nil, err
+			}
+			gitDriver.ApplicationKey = ApplicationKeySecretBytes
+		}
 		return &gitDriver, nil
 	}
 	if art.Artifactory != nil {
