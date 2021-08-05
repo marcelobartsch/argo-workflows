@@ -1,8 +1,11 @@
 package git
+####
 
 import (
 	"errors"
+	"golang.org/x/net/context"
 	"io/ioutil"
+	httpv2 "net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -18,6 +21,7 @@ import (
 	ssh2 "gopkg.in/src-d/go-git.v4/plumbing/transport/ssh"
 
 	wfv1 "github.com/argoproj/argo-workflows/v3/pkg/apis/workflow/v1alpha1"
+	"github.com/bradleyfalzon/ghinstallation"
 )
 
 // GitArtifactDriver is the artifact driver for a git repo
@@ -26,6 +30,9 @@ type GitArtifactDriver struct {
 	Password              string
 	SSHPrivateKey         string
 	InsecureIgnoreHostKey bool
+	ApplicationId         int64
+	InstallationId        int64
+	ApplicationKey        []byte
 }
 
 var sshURLRegex = regexp.MustCompile("^(ssh://)?([^/:]*?)@[^@]+$")
@@ -40,6 +47,39 @@ func GetUser(url string) string {
 }
 
 func (g *GitArtifactDriver) auth(sshUser string) (func(), transport.AuthMethod, []string, error) {
+	if g.ApplicationId != 0 && g.InstallationId != 0 && len(g.ApplicationKey) != 0 {
+		log.Infof("Using Github App Auth App: %d , Installation: %d ", g.ApplicationId, g.InstallationId)
+		itr, err := ghinstallation.New(httpv2.DefaultTransport, g.ApplicationId, g.InstallationId, g.ApplicationKey)
+		if err != nil {
+			log.Fatalf("Couldn't create new transporter Error: %s ", err)
+		}
+		ctx := context.Background()
+		token, err := itr.Token(ctx)
+		if err != nil {
+			log.Fatalf("Can't get a token %s", err)
+		}
+		filename := filepath.Join(os.TempDir(), "git-ask-pass.sh")
+		_, err = os.Stat(filename)
+		if os.IsNotExist(err) {
+			err := ioutil.WriteFile(filename, []byte(`#!/bin/sh
+case "$1" in
+Username*) echo "${GIT_USERNAME}" ;;
+Password*) echo "${GIT_PASSWORD}" ;;
+esac
+`), 0755)
+			if err != nil {
+				return nil, nil, nil, err
+			}
+		}
+		return func() {},
+			&http.BasicAuth{Username: "x-access-token", Password: token},
+			[]string{
+				"GIT_ASKPASS=" + filename,
+				"GIT_USERNAME=x-access-token",
+				"GIT_PASSWORD=" + token,
+			},
+			nil
+	}
 	if g.SSHPrivateKey != "" {
 		signer, err := ssh.ParsePrivateKey([]byte(g.SSHPrivateKey))
 		if err != nil {
