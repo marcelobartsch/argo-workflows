@@ -1858,7 +1858,7 @@ type GitArtifact struct {
 	ApplicationIdSecret *apiv1.SecretKeySelector `json:"applicationIdSecret,omitempty" protobuf:"varint,8,opt,name=applicationIdSecret"`
 
 	// ApplicationIdSecret is the secret selector to the Application ID key
-	InstallationIdSecret *apiv1.SecretKeySelector `json:"installationIDSecret,omitempty" protobuf:"varint,9,opt,name=installationIdSecret"`
+	InstallationIdSecret *apiv1.SecretKeySelector `json:"installationIdSecret,omitempty" protobuf:"varint,9,opt,name=installationIdSecret"`
 
 	// ApplicationIdSecret is the secret selector to the Application ID key
 	ApplicationKeySecret *apiv1.SecretKeySelector `json:"applicationKeySecret,omitempty" protobuf:"varint,10,opt,name=applicationKeySecret"`

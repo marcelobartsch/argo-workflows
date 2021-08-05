@@ -1162,6 +1162,9 @@ func createArchiveLocationSecret(tmpl *wfv1.Template, volMap map[string]apiv1.Vo
 		createSecretVal(volMap, gitRepo.UsernameSecret, uniqueKeyMap)
 		createSecretVal(volMap, gitRepo.PasswordSecret, uniqueKeyMap)
 		createSecretVal(volMap, gitRepo.SSHPrivateKeySecret, uniqueKeyMap)
+		createSecretVal(volMap, gitRepo.ApplicationIdSecret, uniqueKeyMap)
+		createSecretVal(volMap, gitRepo.InstallationIdSecret, uniqueKeyMap)
+		createSecretVal(volMap, gitRepo.ApplicationKeySecret, uniqueKeyMap)
 	} else if ossRepo := tmpl.ArchiveLocation.OSS; ossRepo != nil {
 		createSecretVal(volMap, ossRepo.AccessKeySecret, uniqueKeyMap)
 		createSecretVal(volMap, ossRepo.SecretKeySecret, uniqueKeyMap)
@@ -1178,6 +1181,9 @@ func createSecretVolume(volMap map[string]apiv1.Volume, art wfv1.Artifact, keyMa
 		createSecretVal(volMap, art.Git.UsernameSecret, keyMap)
 		createSecretVal(volMap, art.Git.PasswordSecret, keyMap)
 		createSecretVal(volMap, art.Git.SSHPrivateKeySecret, keyMap)
+		createSecretVal(volMap, art.Git.InstallationIdSecret, keyMap)
+		createSecretVal(volMap, art.Git.ApplicationKeySecret, keyMap)
+		createSecretVal(volMap, art.Git.ApplicationIdSecret, keyMap)
 	} else if art.Artifactory != nil {
 		createSecretVal(volMap, art.Artifactory.UsernameSecret, keyMap)
 		createSecretVal(volMap, art.Artifactory.PasswordSecret, keyMap)

@@ -364,6 +364,28 @@ spec:
                           type: object
                         git:
                           properties:
+                            applicationIdSecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
+                            applicationKeySecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
                             depth:
                               format: int64
                               type: integer
@@ -373,6 +395,17 @@ spec:
                               type: array
                             insecureIgnoreHostKey:
                               type: boolean
+                            installationIDSecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
                             passwordSecret:
                               properties:
                                 key:
@@ -1286,6 +1319,28 @@ spec:
                           type: object
                         git:
                           properties:
+                            applicationIdSecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
+                            applicationKeySecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
                             depth:
                               format: int64
                               type: integer
@@ -1295,6 +1350,17 @@ spec:
                               type: array
                             insecureIgnoreHostKey:
                               type: boolean
+                            installationIDSecret:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
                             passwordSecret:
                               properties:
                                 key:
@@ -2127,6 +2193,28 @@ spec:
                                           type: object
                                         git:
                                           properties:
+                                            applicationIdSecret:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                name:
+                                                  type: string
+                                                optional:
+                                                  type: boolean
+                                              required:
+                                              - key
+                                              type: object
+                                            applicationKeySecret:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                name:
+                                                  type: string
+                                                optional:
+                                                  type: boolean
+                                              required:
+                                              - key
+                                              type: object
                                             depth:
                                               format: int64
                                               type: integer
@@ -2136,6 +2224,17 @@ spec:
                                               type: array
                                             insecureIgnoreHostKey:
                                               type: boolean
+                                            installationIDSecret:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                name:
+                                                  type: string
+                                                optional:
+                                                  type: boolean
+                                              required:
+                                              - key
+                                              type: object
                                             passwordSecret:
                                               properties:
                                                 key:
@@ -3093,6 +3192,28 @@ spec:
                                 type: object
                               git:
                                 properties:
+                                  applicationIdSecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
+                                  applicationKeySecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
                                   depth:
                                     format: int64
                                     type: integer
@@ -3102,6 +3223,17 @@ spec:
                                     type: array
                                   insecureIgnoreHostKey:
                                     type: boolean
+                                  installationIDSecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
                                   passwordSecret:
                                     properties:
                                       key:
@@ -3536,6 +3668,28 @@ spec:
                                 type: object
                               git:
                                 properties:
+                                  applicationIdSecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
+                                  applicationKeySecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
                                   depth:
                                     format: int64
                                     type: integer
@@ -3545,6 +3699,17 @@ spec:
                                     type: array
                                   insecureIgnoreHostKey:
                                     type: boolean
+                                  installationIDSecret:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                    - key
+                                    type: object
                                   passwordSecret:
                                     properties:
                                       key:

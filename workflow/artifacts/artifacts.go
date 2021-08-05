@@ -89,16 +89,16 @@ func NewDriver(ctx context.Context, art *wfv1.Artifact, ri resource.Interface) (
 			gitDriver.SSHPrivateKey = sshPrivateKeyBytes
 		}
 
-		if art.Git.ApplicationIDSecret != nil {
-			ApplicationIdBytes, err := ri.GetSecret(ctx, art.Git.ApplicationIDSecret.Name, art.Git.ApplicationIDSecret.Key)
+		if art.Git.ApplicationIdSecret!= nil {
+			ApplicationIdBytes, err := ri.GetSecret(ctx, art.Git.ApplicationIdSecret.Name, art.Git.ApplicationIdSecret.Key)
 			if err != nil {
 				return nil, err
 			}
 			gitDriver.ApplicationId, err = strconv.ParseInt(ApplicationIdBytes,10, 64)
 		}
 
-		if art.Git.InstallationIDSecret != nil {
-			InstallationIdBytes, err := ri.GetSecret(ctx, art.Git.InstallationIDSecret.Name, art.Git.InstallationIDSecret.Key)
+		if art.Git.InstallationIdSecret != nil {
+			InstallationIdBytes, err := ri.GetSecret(ctx, art.Git.InstallationIdSecret.Name, art.Git.InstallationIdSecret.Key)
 			if err != nil {
 				return nil, err
 			}
@@ -109,7 +109,7 @@ func NewDriver(ctx context.Context, art *wfv1.Artifact, ri resource.Interface) (
 			if err != nil {
 				return nil, err
 			}
-			gitDriver.ApplicationKey = ApplicationKeySecretBytes
+			gitDriver.ApplicationKey = []byte(ApplicationKeySecretBytes)
 		}
 		return &gitDriver, nil
 	}
